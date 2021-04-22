@@ -5,9 +5,8 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace DataAccess.Concrete.EntityFramework.Contexts
+namespace DataAccess.Concrete.EntityFramework
 {
-    //Context : Db tabloları ile proje classlarını bağlamak
     public class MarmaraMarketContext:DbContext
     {
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
