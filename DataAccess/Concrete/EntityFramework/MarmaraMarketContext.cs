@@ -8,16 +8,15 @@ using System.Text;
 namespace DataAccess.Concrete.EntityFramework.Contexts
 {
     //Context : Db tabloları ile proje classlarını bağlamak
-    public class MarmaraMarketForSqlServer:DbContext
+    public class MarmaraMarketContext:DbContext
     {
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer(@"");
+            optionsBuilder.UseSqlServer(@"Server=(localdb)\MSSQLLocalDB; InitialCatalog=MarmaraMarker; Integrated Security=True;");
         }
 
         public DbSet<Basket> Baskets { get; set; }
         public DbSet<Product> Products { get; set; }
-
-
+        public DbSet<Category> Categories { get; set; }
     }
 }

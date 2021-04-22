@@ -8,7 +8,6 @@ using Core.Utilities.Interceptors;
 using Core.Utilities.Security.JWT;
 using DataAccess.Abstract;
 using DataAccess.Concrete.EntityFramework;
-using DataAccess.Concrete.EntityFramework.Contexts;
 using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
@@ -22,7 +21,7 @@ namespace Business.DependencyResolvers.Autofac
         {
             builder.RegisterType<EfProductDal>().As<IProductDal>();
             builder.RegisterType<EfBasketDal>().As<IBasketDal>();
-            builder.RegisterType<EfCategoryDal>().As<ICategoryService>();
+            builder.RegisterType<EfCategoryDal>().As<ICategoryDal>();
 
             builder.RegisterType<ProductManager>().As<IProductService>();
             builder.RegisterType<BasketManager>().As<IBasketService>();

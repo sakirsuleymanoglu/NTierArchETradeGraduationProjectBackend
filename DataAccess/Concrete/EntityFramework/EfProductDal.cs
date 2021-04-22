@@ -8,7 +8,7 @@ using System.Text;
 
 namespace DataAccess.Concrete.EntityFramework
 {
-    public class EfProductDal : EfEntityRepositoryBase<Product, MarmaraMarketForSqlite>, IProductDal
+    public class EfProductDal : EfEntityRepositoryBase<Product, MarmaraMarketContext>, IProductDal
     {
     }
 }
