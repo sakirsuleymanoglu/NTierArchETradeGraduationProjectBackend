@@ -5,14 +5,14 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace DataAccess.Concrete.EntityFramework
+namespace DataAccess.Concrete.EntityFramework.Contexts
 {
     //Context : Db tabloları ile proje classlarını bağlamak
-    public class NorthwindContext:DbContext
+    public class MarmaraMarketForSqlServer:DbContext
     {
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer(@"Server=(localdb)\mssqllocaldb;Database=BtkDukkan;Trusted_Connection=true");
+            optionsBuilder.UseSqlServer(@"");
         }
 
         public DbSet<Basket> Baskets { get; set; }
