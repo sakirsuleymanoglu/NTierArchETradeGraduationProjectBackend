@@ -1,11 +1,12 @@
 ﻿using Core.Entities;
+using Entities.Abstract;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace Entities.Concrete
 {
-    public class Product : IEntity
+    public class Product : EntityBase, IEntity
     {
         public int Id { get; set; }
         public int CategoryId { get; set; }
@@ -13,7 +14,5 @@ namespace Entities.Concrete
         public string Name { get; set; }
         public string Code { get; set; }
         public decimal Price { get; set; }
-        public DateTime CreateDate { get; set; }
-        public bool Active { get; set; }
     }
 }
