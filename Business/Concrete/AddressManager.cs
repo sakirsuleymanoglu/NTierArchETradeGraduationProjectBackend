@@ -13,22 +13,18 @@ namespace Business.Concrete
         {
             throw new NotImplementedException();
         }
-
         public IResult Delete(Address address)
         {
             throw new NotImplementedException();
         }
-
         public IDataResult<List<Address>> GetAll()
         {
             throw new NotImplementedException();
         }
-
         public IDataResult<Address> GetById(int id)
         {
             throw new NotImplementedException();
         }
-
         public IResult Update(Address address)
         {
             throw new NotImplementedException();

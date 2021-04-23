@@ -5,7 +5,6 @@ namespace Core.Utilities.Interceptors
 {
     public abstract class MethodInterception : MethodInterceptionBaseAttribute
     {
-        //invocation :  business method
         protected virtual void OnBefore(IInvocation invocation) { }
         protected virtual void OnAfter(IInvocation invocation) { }
         protected virtual void OnException(IInvocation invocation, System.Exception e) { }
@@ -13,6 +12,7 @@ namespace Core.Utilities.Interceptors
         public override void Intercept(IInvocation invocation)
         {
             var isSuccess = true;
+
             OnBefore(invocation);
             try
             {
@@ -21,7 +21,9 @@ namespace Core.Utilities.Interceptors
             catch (Exception e)
             {
                 isSuccess = false;
+
                 OnException(invocation, e);
+
                 throw;
             }
             finally
@@ -31,6 +33,7 @@ namespace Core.Utilities.Interceptors
                     OnSuccess(invocation);
                 }
             }
+
             OnAfter(invocation);
         }
     }
