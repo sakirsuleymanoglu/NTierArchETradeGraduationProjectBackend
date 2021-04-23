@@ -1,4 +1,5 @@
 ﻿using Business.Abstract;
+using Core.Utilities.Business;
 using Core.Utilities.Results;
 using DataAccess.Abstract;
 using Entities.Concrete;
@@ -17,6 +18,13 @@ namespace Business.Concrete
         }
         public IResult Add(Category category)
         {
+            var result = BusinessRules.Run(CheckIfAlreadyExitsCategoryName(category.Name));
+
+            if (result != null)
+            {
+                return result;
+            }
+
             _categoryDal.Add(category);
 
             return new SuccessResult();
@@ -24,6 +32,13 @@ namespace Business.Concrete
 
         public IResult Delete(Category category)
         {
+            var result = BusinessRules.Run(CheckIfExistsCategory(category.Id));
+
+            if (result != null)
+            {
+                return result;
+            }
+
             _categoryDal.Delete(category);
 
             return new SuccessResult();
@@ -38,14 +53,52 @@ namespace Business.Concrete
 
         public IDataResult<Category> GetById(int id)
         {
-            var result = _categoryDal.Get(c => c.Id == id);
+            var result = BusinessRules.Run(CheckIfExistsCategory(id));
 
-            return new SuccessDataResult<Category>(result);
+            if (result != null)
+            {
+                return new ErrorDataResult<Category>(result.Message);
+            }
+
+            var category = _categoryDal.Get(c => c.Id == id);
+
+            return new SuccessDataResult<Category>(category);
         }
 
         public IResult Update(Category category)
         {
+            var result = BusinessRules.Run(CheckIfExistsCategory(category.Id));
+
+            if (result != null)
+            {
+                return result;
+            }
+
             _categoryDal.Update(category);
+
+            return new SuccessResult();
+        }
+
+        public IResult CheckIfExistsCategory(int categoryId)
+        {
+            var result = _categoryDal.Get(c => c.Id == categoryId);
+
+            if (result == null)
+            {
+                return new ErrorResult();
+            }
+
+            return new SuccessResult();
+        }
+
+        public IResult CheckIfAlreadyExitsCategoryName(string categoryName)
+        {
+            var result = _categoryDal.Get(c => c.Name == categoryName);
+
+            if (result != null)
+            {
+                return new ErrorResult();
+            }
 
             return new SuccessResult();
         }
