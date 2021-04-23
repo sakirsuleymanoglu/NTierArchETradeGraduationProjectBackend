@@ -11,10 +11,12 @@ namespace Core.Extensions
     public class ExceptionMiddleware
     {
         private RequestDelegate _next;
+
         public ExceptionMiddleware(RequestDelegate next)
         {
             _next = next;
         }
+
         public async Task InvokeAsync(HttpContext httpContext)
         {
             try
@@ -26,6 +28,7 @@ namespace Core.Extensions
                 await HandleExceptionAsync(httpContext, e);
             }
         }
+
         private Task HandleExceptionAsync(HttpContext httpContext, Exception e)
         {
             httpContext.Response.ContentType = "application/json";

@@ -4,7 +4,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
-using System.Text;
 
 namespace Core.DataAccess.EntityFramework
 {
@@ -23,6 +22,7 @@ namespace Core.DataAccess.EntityFramework
                 context.SaveChanges();
             }
         }
+
         public void Delete(TEntity entity)
         {
             using (TContext context = new TContext())
@@ -34,6 +34,7 @@ namespace Core.DataAccess.EntityFramework
                 context.SaveChanges();
             }
         }
+
         public TEntity Get(Expression<Func<TEntity, bool>> filter)
         {
             using (TContext context = new TContext())
@@ -41,6 +42,7 @@ namespace Core.DataAccess.EntityFramework
                 return context.Set<TEntity>().SingleOrDefault(filter);
             }
         }
+
         public List<TEntity> GetAll(Expression<Func<TEntity, bool>> filter = null)
         {
             using (TContext context = new TContext())
@@ -50,6 +52,7 @@ namespace Core.DataAccess.EntityFramework
                     : context.Set<TEntity>().Where(filter).ToList();
             }
         }
+
         public void Update(TEntity entity)
         {
             using (TContext context = new TContext())

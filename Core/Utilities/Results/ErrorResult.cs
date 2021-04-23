@@ -6,6 +6,7 @@
         {
 
         }
+
         public ErrorResult() : base(false)
         {
 

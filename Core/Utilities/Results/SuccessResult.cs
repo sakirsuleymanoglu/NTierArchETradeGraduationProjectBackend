@@ -6,6 +6,7 @@
         {
 
         }
+
         public SuccessResult() : base(true)
         {
 
