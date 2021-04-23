@@ -67,7 +67,7 @@ namespace Business.Concrete
 
         public IResult Update(Category category)
         {
-            var result = BusinessRules.Run(CheckIfExistsCategory(category.Id));
+            var result = BusinessRules.Run(CheckIfExistsCategory(category.Id), CheckIfAlreadyExitsCategoryName(category.Name));
 
             if (result != null)
             {
