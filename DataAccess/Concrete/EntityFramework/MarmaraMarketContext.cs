@@ -11,7 +11,7 @@ namespace DataAccess.Concrete.EntityFramework
     {
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer(@"Server=(localdb)\MSSQLLocalDB; InitialCatalog=MarmaraMarker; Integrated Security=True;");
+            optionsBuilder.UseSqlServer(@"Server=(localdb)\MSSQLLocalDB; Initial Catalog=MarmaraMarket; Integrated Security=True;");
         }
 
         public DbSet<Basket> Baskets { get; set; }
