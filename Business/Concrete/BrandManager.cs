@@ -9,12 +9,27 @@ namespace Business.Concrete
 {
     public class BrandManager : IBrandService
     {
+        public IResult Add(Brand brand)
+        {
+            throw new NotImplementedException();
+        }
+
+        public IResult Delete(Brand brand)
+        {
+            throw new NotImplementedException();
+        }
+
         public IDataResult<List<Brand>> GetAll()
         {
             throw new NotImplementedException();
         }
 
         public IDataResult<Brand> GetById(int id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public IResult Update(Brand brand)
         {
             throw new NotImplementedException();
         }
