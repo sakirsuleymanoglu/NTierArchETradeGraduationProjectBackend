@@ -13,7 +13,7 @@ namespace WebAPI.Controllers
     [ApiController]
     public class BasketsController : ControllerBase
     {
-        IBasketService _basketService;
+        private readonly IBasketService _basketService;
 
         public BasketsController(IBasketService basketService)
         {
@@ -27,7 +27,7 @@ namespace WebAPI.Controllers
 
             if (result.Success)
             {
-               return Ok(result);
+                return Ok(result);
             }
 
             return BadRequest(result);

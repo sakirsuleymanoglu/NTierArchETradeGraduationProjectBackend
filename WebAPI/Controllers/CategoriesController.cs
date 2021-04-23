@@ -12,7 +12,7 @@ namespace WebAPI.Controllers
     [ApiController]
     public class CategoriesController : ControllerBase
     {
-        ICategoryService _categoryService;
+        private readonly ICategoryService _categoryService;
         public CategoriesController(ICategoryService categoryService)
         {
             _categoryService = categoryService;

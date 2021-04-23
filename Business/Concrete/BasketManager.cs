@@ -10,7 +10,7 @@ namespace Business.Concrete
 {
     public class BasketManager : IBasketService
     {
-        IBasketDal _basketDal;
+        readonly IBasketDal _basketDal;
 
         public BasketManager(IBasketDal basketDal)
         {
