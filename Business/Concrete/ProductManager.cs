@@ -34,9 +34,19 @@ namespace Business.Concrete
 
         }
 
+        public IResult Delete(Product product)
+        {
+            throw new NotImplementedException();
+        }
+
         public IDataResult<List<Product>> GetAll()
         {
             return new SuccessDataResult<List<Product>>(_productDal.GetAll(),"Ürünler listelendi");
+        }
+
+        public IDataResult<List<Product>> GetAllByBrand(int brandId)
+        {
+            throw new NotImplementedException();
         }
 
         public IDataResult<List<Product>> GetAllByCategory(int categoryId)
@@ -44,6 +54,16 @@ namespace Business.Concrete
             return new SuccessDataResult<List<Product>>
                 (_productDal.GetAll(p=>p.CategoryId==categoryId), 
                 "Ürünler listelendi");
+        }
+
+        public IDataResult<Product> GetById(int id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public IResult Update(Product product)
+        {
+            throw new NotImplementedException();
         }
     }
 }

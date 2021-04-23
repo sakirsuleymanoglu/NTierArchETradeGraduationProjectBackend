@@ -1,10 +1,11 @@
-﻿using System;
+﻿using Business.Abstract;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace Business.Concrete
 {
-    public class CountryManager
+    public class CountryManager : ICountryService
     {
     }
 }
