@@ -9,6 +9,7 @@ namespace Business.Abstract
     public interface ICityService
     {
         IDataResult<List<City>> GetAll();
+        IDataResult<List<City>> GetAllByCountry(int countryId);
         IDataResult<City> GetById(int id);
         IResult Add(City city);
         IResult Delete(City city);
