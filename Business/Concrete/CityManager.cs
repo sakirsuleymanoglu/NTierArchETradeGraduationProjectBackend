@@ -72,7 +72,7 @@ namespace Business.Concrete
 
         public IResult Update(City city)
         {
-            var result = BusinessRules.Run(CheckIfExistsCity(city.Id));
+            var result = BusinessRules.Run(CheckIfExistsCity(city.Id), CheckIfAlreadyExistsCityName(city.Name));
 
             if (result != null)
             {
@@ -84,7 +84,7 @@ namespace Business.Concrete
             return new SuccessResult();
         }
 
-        public IResult CheckIfExistsCity(int cityId)
+        private IResult CheckIfExistsCity(int cityId)
         {
             var result = _cityDal.Get(c => c.Id == cityId);
 
@@ -96,7 +96,7 @@ namespace Business.Concrete
             return new SuccessResult();
         }
 
-        public IResult CheckIfAlreadyExistsCityName(string cityName)
+        private IResult CheckIfAlreadyExistsCityName(string cityName)
         {
             var result = _cityDal.Get(c => c.Name == cityName);
 
@@ -122,7 +122,7 @@ namespace Business.Concrete
             return new SuccessDataResult<List<City>>(cityListByCountry);
         }
 
-        public IResult CheckIfExistsCountry(int countryId)
+        private IResult CheckIfExistsCountry(int countryId)
         {
             var result = _countryService.GetById(countryId);
 

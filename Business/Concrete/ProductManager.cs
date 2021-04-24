@@ -110,7 +110,7 @@ namespace Business.Concrete
             return new SuccessResult();
         }
 
-        public IResult CheckIfExistsProduct(int productId)
+        private IResult CheckIfExistsProduct(int productId)
         {
             var result = _productDal.Get(p => p.Id == productId);
 
@@ -122,7 +122,7 @@ namespace Business.Concrete
             return new SuccessResult();
         }
 
-        public IResult CheckIfExistsBrand(int brandId)
+        private IResult CheckIfExistsBrand(int brandId)
         {
             var result = _brandService.GetById(brandId);
 
@@ -134,7 +134,7 @@ namespace Business.Concrete
             return new SuccessResult();
         }
 
-        public IResult CheckIfExistsCategory(int categoryId)
+        private IResult CheckIfExistsCategory(int categoryId)
         {
             var result = _categoryService.GetById(categoryId);
 

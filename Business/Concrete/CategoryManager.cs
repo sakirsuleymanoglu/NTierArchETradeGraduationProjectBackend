@@ -79,7 +79,7 @@ namespace Business.Concrete
             return new SuccessResult();
         }
 
-        public IResult CheckIfExistsCategory(int categoryId)
+        private IResult CheckIfExistsCategory(int categoryId)
         {
             var result = _categoryDal.Get(c => c.Id == categoryId);
 
@@ -91,7 +91,7 @@ namespace Business.Concrete
             return new SuccessResult();
         }
 
-        public IResult CheckIfAlreadyExitsCategoryName(string categoryName)
+        private IResult CheckIfAlreadyExitsCategoryName(string categoryName)
         {
             var result = _categoryDal.Get(c => c.Name == categoryName);
 

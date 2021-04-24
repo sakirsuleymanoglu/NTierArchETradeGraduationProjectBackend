@@ -80,7 +80,7 @@ namespace Business.Concrete
             return new SuccessResult();
         }
 
-        public IResult CheckIfExistsBrand(int brandId)
+        private IResult CheckIfExistsBrand(int brandId)
         {
             var result = _brandDal.Get(b => b.Id == brandId);
 
@@ -92,7 +92,7 @@ namespace Business.Concrete
             return new SuccessResult();
         }
 
-        public IResult CheckIfAlreadyExistsBrandName(string brandName)
+        private IResult CheckIfAlreadyExistsBrandName(string brandName)
         {
             var result = _brandDal.Get(b => b.Name == brandName);
 
