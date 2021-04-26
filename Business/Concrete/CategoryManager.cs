@@ -6,6 +6,7 @@ using Entities.Concrete;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Linq;
 
 namespace Business.Concrete
 {
@@ -46,7 +47,7 @@ namespace Business.Concrete
 
         public IDataResult<List<Category>> GetAll()
         {
-            var result = _categoryDal.GetAll();
+            var result = _categoryDal.GetAll(c => c.Active == true);
 
             return new SuccessDataResult<List<Category>>(result);
         }
@@ -96,6 +97,69 @@ namespace Business.Concrete
             var result = _categoryDal.Get(c => c.Name == categoryName);
 
             if (result != null)
+            {
+                return new ErrorResult();
+            }
+
+            return new SuccessResult();
+        }
+
+        public IDataResult<List<Category>> GetTopFive()
+        {
+            var result = _categoryDal.GetAll(c => c.Active == true).Take(5).ToList();
+
+            return new SuccessDataResult<List<Category>>(result);
+        }
+
+        public IResult Deactivate(Category category)
+        {
+            var result = BusinessRules.Run(CheckIfExistsCategory(category.Id), CheckIfAlreadyDeactiveCategory(category.Active));
+
+            if (result != null)
+            {
+                return result;
+            }
+
+            category.Active = false;
+
+            _categoryDal.Update(category);
+
+            return new SuccessResult();
+        }
+
+        public IResult Activate(Category category)
+        {
+            var result = BusinessRules.Run(CheckIfExistsCategory(category.Id), CheckIfAlreadyActiveCategory(category.Active));
+
+            if (result != null)
+            {
+                return result;
+            }
+
+            category.Active = true;
+
+            _categoryDal.Update(category);
+
+            return new SuccessResult();
+        }
+
+        private IResult CheckIfAlreadyActiveCategory(bool active)
+        {
+            var result = active;
+
+            if (result)
+            {
+                return new ErrorResult();
+            }
+
+            return new SuccessResult();
+        }
+
+        private IResult CheckIfAlreadyDeactiveCategory(bool active)
+        {
+            var result = active;
+
+            if (!result)
             {
                 return new ErrorResult();
             }
