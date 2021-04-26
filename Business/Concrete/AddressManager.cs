@@ -73,7 +73,7 @@ namespace Business.Concrete
             return new SuccessResult();
         }
 
-        public IResult CheckIfExistsAddress(int addressId)
+        private IResult CheckIfExistsAddress(int addressId)
         {
             var result = _addressDal.Get(a => a.Id == addressId);
 

@@ -20,7 +20,7 @@ namespace WebAPI.Controllers
             _basketService = basketService;
         }
 
-        [HttpGet("getbasket")]
+        [HttpGet("getall")]
         public IActionResult GetAll()
         {
             var result = _basketService.GetAll();
@@ -45,7 +45,19 @@ namespace WebAPI.Controllers
             }
 
             return BadRequest(result);
+        }
 
+        [HttpPost("delete")]
+        public IActionResult Delete(Basket basket)
+        {
+            var result = _basketService.Delete(basket);
+
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+
+            return BadRequest(result);
         }
     }
 }
