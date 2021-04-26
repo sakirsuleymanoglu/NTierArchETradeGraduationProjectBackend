@@ -34,10 +34,10 @@ namespace WebAPI.Controllers
 
         }
 
-        [HttpPost("add")]
-        public IActionResult Add(Basket basket)
+        [HttpPost("addorupdate")]
+        public IActionResult AddOrUpdate(Basket basket)
         {
-            var result = _basketService.Add(basket);
+            var result = _basketService.AddOrUpdate(basket);
 
             if (result.Success)
             {
