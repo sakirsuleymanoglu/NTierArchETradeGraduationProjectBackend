@@ -18,9 +18,18 @@ namespace Business.Concrete
             _basketDal = basketDal;
         }
 
-        public IResult Add(Basket basket)
+        public IResult AddOrUpdate(Basket basket)
         {
-            _basketDal.Add(basket);
+            var result = BusinessRules.Run(CheckIfAlreadyExistsProductForCurrentUserAtBasket(basket.UserId, basket.ProductId));
+
+            if (result != null)
+            {
+                _basketDal.Add(basket);
+            }
+
+            basket.Count++;
+            
+            _basketDal.Update(basket);
 
             return new SuccessResult();
         }
@@ -49,6 +58,18 @@ namespace Business.Concrete
         private IResult CheckIfExistsBasket(int basketId)
         {
             var result = _basketDal.Get(b => b.Id == basketId);
+
+            if (result == null)
+            {
+                return new ErrorResult();
+            }
+
+            return new SuccessResult();
+        }
+
+        private IResult CheckIfAlreadyExistsProductForCurrentUserAtBasket(int userId, int productId)
+        {
+            var result = _basketDal.Get(b => b.UserId == userId && b.ProductId == productId);
 
             if (result == null)
             {

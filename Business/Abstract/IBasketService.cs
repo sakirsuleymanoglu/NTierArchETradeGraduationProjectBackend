@@ -9,7 +9,7 @@ namespace Business.Abstract
     public interface IBasketService
     {
         IDataResult<List<Basket>> GetAll();
-        IResult Add(Basket basket);
+        IResult AddOrUpdate(Basket basket);
         IResult Delete(Basket basket);
     }
 }
