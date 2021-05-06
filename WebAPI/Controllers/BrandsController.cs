@@ -11,19 +11,19 @@ namespace WebAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class ProductsController : ControllerBase
+    public class BrandsController : ControllerBase
     {
-        IProductService _productService;
+        IBrandService _brandService;
 
-        public ProductsController(IProductService productService)
+        public BrandsController(IBrandService brandService)
         {
-            _productService = productService;
+            _brandService = brandService;
         }
 
         [HttpGet("getall")]
         public IActionResult GetAll()
         {
-            var result = _productService.GetAll();
+            var result = _brandService.GetAll();
 
             if (result.Success)
             {
@@ -36,33 +36,7 @@ namespace WebAPI.Controllers
         [HttpGet("getbyid")]
         public IActionResult GetById(int id)
         {
-            var result = _productService.GetById(id);
-
-            if (result.Success)
-            {
-                return Ok(result);
-            }
-
-            return BadRequest(result);
-        }
-
-        [HttpGet("getallbycategory")]
-        public IActionResult GetAllByCategory(int categoryId)
-        {
-            var result = _productService.GetAllByCategory(categoryId);
-
-            if (result.Success)
-            {
-                return Ok(result);
-            }
-
-            return BadRequest(result);
-        }
-
-        [HttpGet("getallbybrand")]
-        public IActionResult GetAllByBrand(int brandId)
-        {
-            var result = _productService.GetAllByBrand(brandId);
+            var result = _brandService.GetById(id);
 
             if (result.Success)
             {
@@ -73,9 +47,9 @@ namespace WebAPI.Controllers
         }
 
         [HttpPost("add")]
-        public IActionResult Add(Product product)
+        public IActionResult Add(Brand brand)
         {
-            var result = _productService.Add(product);
+            var result = _brandService.Add(brand);
 
             if (result.Success)
             {
@@ -86,9 +60,9 @@ namespace WebAPI.Controllers
         }
 
         [HttpPost("delete")]
-        public IActionResult Delete(Product product)
+        public IActionResult Delete(Brand brand)
         {
-            var result = _productService.Delete(product);
+            var result = _brandService.Delete(brand);
 
             if (result.Success)
             {
@@ -99,9 +73,9 @@ namespace WebAPI.Controllers
         }
 
         [HttpPost("update")]
-        public IActionResult Update(Product product)
+        public IActionResult Update(Brand brand)
         {
-            var result = _productService.Update(product);
+            var result = _brandService.Update(brand);
 
             if (result.Success)
             {

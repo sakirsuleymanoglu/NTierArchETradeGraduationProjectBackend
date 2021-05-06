@@ -11,19 +11,32 @@ namespace WebAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class ProductsController : ControllerBase
+    public class CitiesController : ControllerBase
     {
-        IProductService _productService;
+        ICityService _cityService;
 
-        public ProductsController(IProductService productService)
+        public CitiesController(ICityService cityService)
         {
-            _productService = productService;
+            _cityService = cityService;
         }
 
         [HttpGet("getall")]
         public IActionResult GetAll()
         {
-            var result = _productService.GetAll();
+            var result = _cityService.GetAll();
+
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+
+            return BadRequest(result);
+        }
+
+        [HttpGet("getallbycountry")]
+        public IActionResult GetAllByCountry(int countryId)
+        {
+            var result = _cityService.GetAllByCountry(countryId);
 
             if (result.Success)
             {
@@ -36,33 +49,7 @@ namespace WebAPI.Controllers
         [HttpGet("getbyid")]
         public IActionResult GetById(int id)
         {
-            var result = _productService.GetById(id);
-
-            if (result.Success)
-            {
-                return Ok(result);
-            }
-
-            return BadRequest(result);
-        }
-
-        [HttpGet("getallbycategory")]
-        public IActionResult GetAllByCategory(int categoryId)
-        {
-            var result = _productService.GetAllByCategory(categoryId);
-
-            if (result.Success)
-            {
-                return Ok(result);
-            }
-
-            return BadRequest(result);
-        }
-
-        [HttpGet("getallbybrand")]
-        public IActionResult GetAllByBrand(int brandId)
-        {
-            var result = _productService.GetAllByBrand(brandId);
+            var result = _cityService.GetById(id);
 
             if (result.Success)
             {
@@ -73,9 +60,9 @@ namespace WebAPI.Controllers
         }
 
         [HttpPost("add")]
-        public IActionResult Add(Product product)
+        public IActionResult Add(City city)
         {
-            var result = _productService.Add(product);
+            var result = _cityService.Add(city);
 
             if (result.Success)
             {
@@ -86,9 +73,9 @@ namespace WebAPI.Controllers
         }
 
         [HttpPost("delete")]
-        public IActionResult Delete(Product product)
+        public IActionResult Delete(City city)
         {
-            var result = _productService.Delete(product);
+            var result = _cityService.Delete(city);
 
             if (result.Success)
             {
@@ -99,9 +86,9 @@ namespace WebAPI.Controllers
         }
 
         [HttpPost("update")]
-        public IActionResult Update(Product product)
+        public IActionResult Update(City city)
         {
-            var result = _productService.Update(product);
+            var result = _cityService.Update(city);
 
             if (result.Success)
             {

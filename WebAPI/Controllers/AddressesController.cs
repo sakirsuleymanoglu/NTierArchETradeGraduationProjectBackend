@@ -59,7 +59,6 @@ namespace WebAPI.Controllers
             return BadRequest(result);
         }
 
-
         [HttpPost("delete")]
         public IActionResult Delete(Address address)
         {
@@ -72,7 +71,6 @@ namespace WebAPI.Controllers
 
             return BadRequest(result);
         }
-
 
         [HttpPost("update")]
         public IActionResult Update(Address address)

@@ -11,18 +11,19 @@ namespace WebAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class CategoriesController : ControllerBase
+    public class CountriesController : ControllerBase
     {
-        private readonly ICategoryService _categoryService;
-        public CategoriesController(ICategoryService categoryService)
+        ICountryService _countryService;
+
+        public CountriesController(ICountryService countryService)
         {
-            _categoryService = categoryService;
+            _countryService = countryService;
         }
 
         [HttpGet("getall")]
         public IActionResult GetAll()
         {
-            var result = _categoryService.GetAll();
+            var result = _countryService.GetAll();
 
             if (result.Success)
             {
@@ -33,9 +34,9 @@ namespace WebAPI.Controllers
         }
 
         [HttpGet("getbyid")]
-        public IActionResult GetById(int id)
+        public IActionResult GetAll(int id)
         {
-            var result = _categoryService.GetById(id);
+            var result = _countryService.GetById(id);
 
             if (result.Success)
             {
@@ -45,10 +46,10 @@ namespace WebAPI.Controllers
             return BadRequest(result);
         }
 
-        [HttpPost("add")]
-        public IActionResult Add(Category category)
+        [HttpGet("add")]
+        public IActionResult Add(Country country)
         {
-            var result = _categoryService.Add(category);
+            var result = _countryService.Add(country);
 
             if (result.Success)
             {
@@ -58,10 +59,10 @@ namespace WebAPI.Controllers
             return BadRequest(result);
         }
 
-        [HttpPost("delete")]
-        public IActionResult Delete(Category category)
+        [HttpGet("delete")]
+        public IActionResult Delete(Country country)
         {
-            var result = _categoryService.Delete(category);
+            var result = _countryService.Delete(country);
 
             if (result.Success)
             {
@@ -71,10 +72,10 @@ namespace WebAPI.Controllers
             return BadRequest(result);
         }
 
-        [HttpPost("update")]
-        public IActionResult Update(Category category)
+        [HttpGet("update")]
+        public IActionResult Update(Country country)
         {
-            var result = _categoryService.Update(category);
+            var result = _countryService.Update(country);
 
             if (result.Success)
             {
