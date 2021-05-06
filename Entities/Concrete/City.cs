@@ -1,9 +1,8 @@
 ﻿using Core.Entities;
-using Entities.Abstract;
 
 namespace Entities.Concrete
 {
-    public class City : EntityBase, IEntity
+    public class City : IEntity
     {
         public int Id { get; set; }
         public int CountryId { get; set; }

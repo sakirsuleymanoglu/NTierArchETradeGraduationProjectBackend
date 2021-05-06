@@ -1,9 +1,8 @@
 ﻿using Core.Entities;
-using Entities.Abstract;
 
 namespace Entities.Concrete
 {
-    public class Product : EntityBase, IEntity
+    public class Product : IEntity
     {
         public int Id { get; set; }
         public int CategoryId { get; set; }

@@ -1,12 +1,8 @@
 ﻿using Core.Entities;
-using Entities.Abstract;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Entities.Concrete
 {
-    public class Basket : EntityBase, IEntity
+    public class Basket : IEntity
     {
         public int Id { get; set; }
         public int ProductId { get; set; }

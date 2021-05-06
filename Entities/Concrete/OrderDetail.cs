@@ -1,9 +1,8 @@
 ﻿using Core.Entities;
-using Entities.Abstract;
 
 namespace Entities.Concrete
 {
-    public class OrderDetail : EntityBase, IEntity
+    public class OrderDetail : IEntity
     {
         public int Id { get; set; }
         public int OrderId { get; set; }
