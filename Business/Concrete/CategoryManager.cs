@@ -47,7 +47,7 @@ namespace Business.Concrete
 
         public IDataResult<List<Category>> GetAll()
         {
-            var result = _categoryDal.GetAll(c => c.Active == true);
+            var result = _categoryDal.GetAll();
 
             return new SuccessDataResult<List<Category>>(result);
         }
@@ -106,41 +106,9 @@ namespace Business.Concrete
 
         public IDataResult<List<Category>> GetTopFive()
         {
-            var result = _categoryDal.GetAll(c => c.Active == true).Take(5).ToList();
+            var result = _categoryDal.GetAll().Take(5).ToList();
 
             return new SuccessDataResult<List<Category>>(result);
-        }
-
-        public IResult Deactivate(Category category)
-        {
-            var result = BusinessRules.Run(CheckIfExistsCategory(category.Id), CheckIfAlreadyDeactiveCategory(category.Active));
-
-            if (result != null)
-            {
-                return result;
-            }
-
-            category.Active = false;
-
-            _categoryDal.Update(category);
-
-            return new SuccessResult();
-        }
-
-        public IResult Activate(Category category)
-        {
-            var result = BusinessRules.Run(CheckIfExistsCategory(category.Id), CheckIfAlreadyActiveCategory(category.Active));
-
-            if (result != null)
-            {
-                return result;
-            }
-
-            category.Active = true;
-
-            _categoryDal.Update(category);
-
-            return new SuccessResult();
         }
 
         private IResult CheckIfAlreadyActiveCategory(bool active)

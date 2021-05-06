@@ -40,7 +40,7 @@ namespace Business.Concrete
 
         public IDataResult<List<Address>> GetAll()
         {
-            var result = _addressDal.GetAll(a => a.Active == true);
+            var result = _addressDal.GetAll();
 
             return new SuccessDataResult<List<Address>>(result);
         }

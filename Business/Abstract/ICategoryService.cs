@@ -14,7 +14,5 @@ namespace Business.Abstract
         IResult Add(Category category);
         IResult Delete(Category category);
         IResult Update(Category category);
-        IResult Deactivate(Category category);
-        IResult Activate(Category category);
     }
 }

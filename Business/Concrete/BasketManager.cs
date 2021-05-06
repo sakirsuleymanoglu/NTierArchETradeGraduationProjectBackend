@@ -50,7 +50,7 @@ namespace Business.Concrete
 
         public IDataResult<List<Basket>> GetAll()
         {
-            var result = _basketDal.GetAll(b => b.Active == true);
+            var result = _basketDal.GetAll();
 
             return new SuccessDataResult<List<Basket>>(result);
         }
