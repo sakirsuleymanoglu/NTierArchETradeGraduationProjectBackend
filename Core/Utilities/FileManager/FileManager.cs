@@ -21,30 +21,39 @@ namespace Core.Utilities.UploadFiles
 
             var result = fileTypes.Contains(fileType);
 
+            string filePath = null;
+
+            string parentSaveDirectory = @"wwwroot\";
+
+            string childSaveDirectory = @"uploads\";
+
+            string saveDirectory = parentSaveDirectory + childSaveDirectory;
+
+            string fileName = null;
+
             if (result)
             {
                 uploadFile.FileType = fileType;
 
-                var filePath = hostEnvironment.ContentRootPath;
+                filePath = hostEnvironment.ContentRootPath;
 
-                var fileName = Path.GetFileName(formFile.FileName);
+                uploadFile.Id = Guid.NewGuid();
 
-                if (formFile.Length > 0)
+                fileName = uploadFile.Id.ToString() + uploadFile.FileType;
+
+                uploadFile.FileUrl = Path.Combine(filePath, saveDirectory, fileName);
+
+                using (var stream = new FileStream(uploadFile.FileUrl, FileMode.Create))
                 {
-                    uploadFile.Id = Guid.NewGuid();
-
-                    uploadFile.FileName = fileName;
-
-                    uploadFile.FileUrl = Path.Combine(filePath, @"wwwroot\uploads", uploadFile.Id.ToString() + uploadFile.FileType);
-
-                    using (var stream = new FileStream(uploadFile.FileUrl, FileMode.Create))
-                    {
-                        formFile.CopyTo(stream);
-                    }
+                    formFile.CopyTo(stream);
                 }
             }
+            else
+            {
+                throw new Exception("Dosya tipi gerçersizdir");
+            }
 
-            return uploadFile.FileUrl;
+            return childSaveDirectory + fileName;
         }
     }
 }
