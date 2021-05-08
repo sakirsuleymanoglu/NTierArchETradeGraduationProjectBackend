@@ -35,7 +35,7 @@ namespace Core.Utilities.UploadFiles
 
                     uploadFile.FileName = fileName;
 
-                    uploadFile.FileUrl = Path.Combine(filePath, "uploads", uploadFile.Id.ToString() + uploadFile.FileType);
+                    uploadFile.FileUrl = Path.Combine(filePath, @"wwwroot\uploads", uploadFile.Id.ToString() + uploadFile.FileType);
 
                     using (var stream = new FileStream(uploadFile.FileUrl, FileMode.Create))
                     {
