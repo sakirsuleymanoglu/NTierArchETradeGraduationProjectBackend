@@ -19,16 +19,17 @@ namespace WebAPI.Controllers
     {
         IProductImageService _productImageService;
 
-        private readonly IHostEnvironment _hostEnvironment;
+        IHostEnvironment _hostEnvironment;
 
         public ProductImagesController(IProductImageService productImageService, IHostEnvironment hostEnvironment)
         {
             _productImageService = productImageService;
+
             _hostEnvironment = hostEnvironment;
         }
 
         [HttpPost("add")]
-        public IActionResult Add(IFormFile formFile, [FromQuery] int productId)
+        public IActionResult Add(IFormFile formFile, int productId)
         {
             var imagePath = FileManager.Create(_hostEnvironment, formFile);
 

@@ -7,7 +7,7 @@ using System.Text;
 
 namespace DataAccess.Concrete.EntityFramework
 {
-    public class ProductImageDal : EfEntityRepositoryBase<ProductImage, MarmaraMarketContext>, IProductImageDal
+    public class EfProductImageDal : EfEntityRepositoryBase<ProductImage, MarmaraMarketContext>, IProductImageDal
     {
 
     }
