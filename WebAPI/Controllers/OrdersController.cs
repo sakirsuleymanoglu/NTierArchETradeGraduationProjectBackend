@@ -33,6 +33,45 @@ namespace WebAPI.Controllers
             return BadRequest(result);
         }
 
+        [HttpGet("getallbyuser")]
+        public IActionResult GetAllByUser(int userId)
+        {
+            var result = _orderService.GetAllByUser(userId);
+
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+
+            return BadRequest(result);
+        }
+
+        [HttpGet("getallbyaddress")]
+        public IActionResult GetAllByAddress(int addressId)
+        {
+            var result = _orderService.GetAllByAddress(addressId);
+
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+
+            return BadRequest(result);
+        }
+
+        [HttpGet("getallbyorderstatus")]
+        public IActionResult GetAllByOrderStatus(int orderStatusId)
+        {
+            var result = _orderService.GetAllByOrderStatus(orderStatusId);
+
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+
+            return BadRequest(result);
+        }
+
         [HttpGet("getbyid")]
         public IActionResult GetById(int id)
         {
