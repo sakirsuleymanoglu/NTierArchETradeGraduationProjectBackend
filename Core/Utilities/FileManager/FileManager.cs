@@ -11,6 +11,9 @@ namespace Core.Utilities.UploadFiles
 {
     public class FileManager
     {
+        static string parentSaveDirectory = @"wwwroot\";
+        static string childSaveDirectory = @"uploads\";
+
         public static string Create(IHostEnvironment hostEnvironment, IFormFile formFile)
         {
             List<string> fileTypes = new List<string> { ".jpg", ".png" };
@@ -21,11 +24,7 @@ namespace Core.Utilities.UploadFiles
 
             var result = fileTypes.Contains(fileType);
 
-            string filePath = null;
-
-            string parentSaveDirectory = @"wwwroot\";
-
-            string childSaveDirectory = @"uploads\";
+            string rootPath = null;
 
             string saveDirectory = parentSaveDirectory + childSaveDirectory;
 
@@ -35,13 +34,13 @@ namespace Core.Utilities.UploadFiles
             {
                 uploadFile.FileType = fileType;
 
-                filePath = hostEnvironment.ContentRootPath;
+                rootPath = hostEnvironment.ContentRootPath;
 
                 uploadFile.Id = Guid.NewGuid();
 
                 fileName = uploadFile.Id.ToString() + uploadFile.FileType;
 
-                uploadFile.FileUrl = Path.Combine(filePath, saveDirectory, fileName);
+                uploadFile.FileUrl = Path.Combine(rootPath, saveDirectory, fileName);
 
                 using (var stream = new FileStream(uploadFile.FileUrl, FileMode.Create))
                 {
@@ -54,6 +53,15 @@ namespace Core.Utilities.UploadFiles
             }
 
             return childSaveDirectory + fileName;
+        }
+
+        public static void Delete(IHostEnvironment hostEnvironment, string imagePath)
+        {
+            string rootPath = hostEnvironment.ContentRootPath;
+
+            string fullPath = Path.Combine(rootPath, parentSaveDirectory, imagePath);
+
+            File.Delete(fullPath);
         }
     }
 }
