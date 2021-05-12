@@ -10,6 +10,7 @@ namespace Business.Abstract
     {
         IDataResult<List<OrderDetail>> GetAll();
         IDataResult<OrderDetail> GetById(int id);
+        IDataResult<OrderDetail> GetByOrder(int orderId);
         IResult Add(OrderDetail orderDetail);
         IResult Delete(OrderDetail orderDetail);
         IResult Update(OrderDetail orderDetail);
