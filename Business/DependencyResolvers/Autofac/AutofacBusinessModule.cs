@@ -40,6 +40,10 @@ namespace Business.DependencyResolvers.Autofac
 
             builder.RegisterType<EfProductImageDal>().As<IProductImageDal>();
 
+            builder.RegisterType<EfUserDal>().As<IUserDal>();
+
+            builder.RegisterType<EfUserOperationClaimDal>().As<IUserOperationClaimDal>();
+
             //Manager - Service
 
             builder.RegisterType<ProductManager>().As<IProductService>();
@@ -63,6 +67,12 @@ namespace Business.DependencyResolvers.Autofac
             builder.RegisterType<OrderStatusManager>().As<IOrderStatusService>();
 
             builder.RegisterType<ProductImageManager>().As<IProductImageService>();
+
+            builder.RegisterType<UserManager>().As<IUserService>();
+
+            builder.RegisterType<UserOperationClaimManager>().As<IUserOperationClaimService>();
+
+            builder.RegisterType<AuthManager>().As<IAuthService>();
 
             builder.RegisterType<JwtHelper>().As<ITokenHelper>();
 
