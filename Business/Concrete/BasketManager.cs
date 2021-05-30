@@ -26,10 +26,12 @@ namespace Business.Concrete
             {
                 _basketDal.Add(basket);
             }
+            else
+            {
+                basket.Count++;
 
-            basket.Count++;
-            
-            _basketDal.Update(basket);
+                _basketDal.Update(basket);
+            }
 
             return new SuccessResult();
         }
