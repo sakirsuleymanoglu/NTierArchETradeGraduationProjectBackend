@@ -28,6 +28,32 @@ namespace WebAPI.Controllers
             _hostEnvironment = hostEnvironment;
         }
 
+        [HttpGet("getallbyproduct")]
+        public IActionResult GetAllByProduct(int productId)
+        {
+            var result = _productImageService.GetAllByProduct(productId);
+
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+
+            return BadRequest(result);
+        }
+
+        [HttpGet("getfirstimagebyproduct")]
+        public IActionResult GetFirstImageByProduct(int productId)
+        {
+            var result = _productImageService.GetFirstImageByProduct(productId);
+
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+
+            return BadRequest(result);
+        }
+
         [HttpPost("add")]
         public IActionResult Add(IFormFile formFile, int productId)
         {

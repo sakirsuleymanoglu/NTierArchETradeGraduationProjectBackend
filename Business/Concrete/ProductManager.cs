@@ -3,6 +3,7 @@ using Core.Utilities.Business;
 using Core.Utilities.Results;
 using DataAccess.Abstract;
 using Entities.Concrete;
+using Entities.DTOs;
 using System;
 using System.Collections.Generic;
 
@@ -16,13 +17,17 @@ namespace Business.Concrete
 
         private readonly IBrandService _brandService;
 
-        public ProductManager(IProductDal productDal, ICategoryService categoryService, IBrandService brandService)
+        private readonly IProductImageService _productImageService;
+
+        public ProductManager(IProductDal productDal, ICategoryService categoryService, IBrandService brandService, IProductImageService productImageService)
         {
             _productDal = productDal;
 
             _categoryService = categoryService;
 
             _brandService = brandService;
+
+            _productImageService = productImageService;
         }
 
         public IResult Add(Product product)
@@ -144,6 +149,27 @@ namespace Business.Concrete
             }
 
             return new SuccessResult();
+        }
+
+        public IDataResult<List<ProductDetailsDto>> GetAllWithDetails()
+        {
+            var result = _productDal.GetAllWithDetails();
+
+            return new SuccessDataResult<List<ProductDetailsDto>>(result);
+        }
+
+        public IDataResult<List<ProductDetailsDto>> GEtAllWithDetailsByCategoryName(string categoryName)
+        {
+            var result = _productDal.GetAllWithDetails(p => p.CategoryName == categoryName);
+
+            return new SuccessDataResult<List<ProductDetailsDto>>(result);
+        }
+
+        public IDataResult<List<ProductDetailsDto>> GetAllWithDetailsByBrandName(string brandName)
+        {
+            var result = _productDal.GetAllWithDetails(p => p.BrandName == brandName);
+
+            return new SuccessDataResult<List<ProductDetailsDto>>(result);
         }
     }
 }
