@@ -72,6 +72,32 @@ namespace WebAPI.Controllers
             return BadRequest(result);
         }
 
+        [HttpGet("getallwithdetailsbyprice")]
+        public IActionResult GetAllWithDetailsByPrice(decimal begin, decimal end)
+        {
+            var result = _productService.GetAllWithDetailsByPrice(begin, end);
+
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+
+            return BadRequest(result);
+        }
+
+        [HttpGet("getallwithdetailsbysearchvalue")]
+        public IActionResult GetAllWithDetailsByProductName(string value)
+        {
+            var result = _productService.GetAllWithDetailsBySearchValue(value);
+
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+
+            return BadRequest(result);
+        }
+
         [HttpGet("getbyid")]
         public IActionResult GetById(int id)
         {

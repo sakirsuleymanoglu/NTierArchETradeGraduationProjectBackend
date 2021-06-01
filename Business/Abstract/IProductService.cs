@@ -19,5 +19,7 @@ namespace Business.Abstract
         IResult Delete(Product product);
         IResult Update(Product product);
         IDataResult<List<ProductDetailsDto>> GetAllWithDetailsByBrandName(string brandName);
+        IDataResult<List<ProductDetailsDto>> GetAllWithDetailsByPrice(decimal begin, decimal end);
+        IDataResult<List<ProductDetailsDto>> GetAllWithDetailsBySearchValue(string value);
     }
 }

@@ -171,5 +171,20 @@ namespace Business.Concrete
 
             return new SuccessDataResult<List<ProductDetailsDto>>(result);
         }
+
+        public IDataResult<List<ProductDetailsDto>> GetAllWithDetailsByPrice(decimal begin, decimal end)
+        {
+            var result = _productDal.GetAllWithDetails(p => p.Price >= begin && p.Price < end);
+
+            return new SuccessDataResult<List<ProductDetailsDto>>(result);
+        }
+
+        public IDataResult<List<ProductDetailsDto>> GetAllWithDetailsBySearchValue(string value)
+        {
+            var result = _productDal.GetAllWithDetails(p => p.Name.ToLower().Contains(value.ToLower()));
+
+            return new SuccessDataResult<List<ProductDetailsDto>>(result);
+        }
     }
+
 }
