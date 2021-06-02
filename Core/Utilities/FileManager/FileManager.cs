@@ -16,7 +16,7 @@ namespace Core.Utilities.UploadFiles
 
         public static string Create(IHostEnvironment hostEnvironment, IFormFile formFile)
         {
-            List<string> fileTypes = new List<string> { ".jpg", ".png" };
+            List<string> fileTypes = new List<string> { ".jpg", ".png", ".jpeg"};
 
             UploadFile uploadFile = new UploadFile();
 

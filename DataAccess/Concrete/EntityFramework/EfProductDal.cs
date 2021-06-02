@@ -30,6 +30,7 @@ namespace DataAccess.Concrete.EntityFramework
                                  CategoryName = c.Name,
                                  Description = p.Description,
                                  Price = p.Price,
+                                 ImagePath = p.DefaultImagePath
                              };
 
                 return filter != null ? result.Where(filter).ToList()
