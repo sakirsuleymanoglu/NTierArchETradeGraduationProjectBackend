@@ -111,6 +111,19 @@ namespace WebAPI.Controllers
             return BadRequest(result);
         }
 
+        [HttpGet("getwithdetailsbyid")]
+        public IActionResult GetWithDetailsById(int productId)
+        {
+            var result = _productService.GetProductWithDetailsById(productId);
+
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+
+            return BadRequest(result);
+        }
+
         [HttpGet("getallbycategory")]
         public IActionResult GetAllByCategory(int categoryId)
         {

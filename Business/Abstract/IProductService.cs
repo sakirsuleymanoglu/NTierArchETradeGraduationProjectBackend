@@ -21,5 +21,6 @@ namespace Business.Abstract
         IDataResult<List<ProductDetailsDto>> GetAllWithDetailsByBrandName(string brandName);
         IDataResult<List<ProductDetailsDto>> GetAllWithDetailsByPrice(decimal begin, decimal end);
         IDataResult<List<ProductDetailsDto>> GetAllWithDetailsBySearchValue(string value);
+        IDataResult<ProductDetailsDto> GetProductWithDetailsById(int productId);
     }
 }

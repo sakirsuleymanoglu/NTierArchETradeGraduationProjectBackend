@@ -185,6 +185,13 @@ namespace Business.Concrete
 
             return new SuccessDataResult<List<ProductDetailsDto>>(result);
         }
+
+        public IDataResult<ProductDetailsDto> GetProductWithDetailsById(int productId)
+        {
+            var result = _productDal.GetWithDetails(p => p.Id == productId);
+
+            return new SuccessDataResult<ProductDetailsDto>(result);
+        }
     }
 
 }
