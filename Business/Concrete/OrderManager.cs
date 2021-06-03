@@ -11,10 +11,10 @@ namespace Business.Concrete
 {
     public class OrderManager : IOrderService
     {
-        private IOrderDal _orderDal;
-        private IUserService _userService;
-        private IAddressService _addressService;
-        private IOrderStatusService _orderStatusService;
+        private readonly IOrderDal _orderDal;
+        private readonly IUserService _userService;
+        private readonly IAddressService _addressService;
+        private readonly IOrderStatusService _orderStatusService;
 
         public OrderManager(IOrderDal orderDal, IUserService userService, IAddressService addressService, IOrderStatusService orderStatusService)
         {

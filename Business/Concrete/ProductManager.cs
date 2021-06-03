@@ -17,17 +17,13 @@ namespace Business.Concrete
 
         private readonly IBrandService _brandService;
 
-        private readonly IProductImageService _productImageService;
-
-        public ProductManager(IProductDal productDal, ICategoryService categoryService, IBrandService brandService, IProductImageService productImageService)
+        public ProductManager(IProductDal productDal, ICategoryService categoryService, IBrandService brandService)
         {
             _productDal = productDal;
 
             _categoryService = categoryService;
 
             _brandService = brandService;
-
-            _productImageService = productImageService;
         }
 
         public IResult Add(Product product)

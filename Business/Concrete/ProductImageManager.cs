@@ -11,7 +11,7 @@ namespace Business.Concrete
 {
     public class ProductImageManager : IProductImageService
     {
-        IProductImageDal _productImageDal;
+        private readonly IProductImageDal _productImageDal;
         public ProductImageManager(IProductImageDal productImageDal)
         {
             _productImageDal = productImageDal;
@@ -55,13 +55,6 @@ namespace Business.Concrete
         public IDataResult<ProductImage> GetById(int id)
         {
             var result = _productImageDal.Get(pImage => pImage.Id == id);
-
-            return new SuccessDataResult<ProductImage>(result);
-        }
-
-        public IDataResult<ProductImage> GetFirstImageByProduct(int productId)
-        {
-            var result = _productImageDal.First(pImage => pImage.ProductId == productId);
 
             return new SuccessDataResult<ProductImage>(result);
         }

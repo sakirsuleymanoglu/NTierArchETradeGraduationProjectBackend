@@ -17,9 +17,9 @@ namespace WebAPI.Controllers
     [ApiController]
     public class ProductImagesController : ControllerBase
     {
-        IProductImageService _productImageService;
+        private readonly IProductImageService _productImageService;
 
-        IHostEnvironment _hostEnvironment;
+        private readonly IHostEnvironment _hostEnvironment;
 
         public ProductImagesController(IProductImageService productImageService, IHostEnvironment hostEnvironment)
         {
@@ -32,19 +32,6 @@ namespace WebAPI.Controllers
         public IActionResult GetAllByProduct(int productId)
         {
             var result = _productImageService.GetAllByProduct(productId);
-
-            if (result.Success)
-            {
-                return Ok(result);
-            }
-
-            return BadRequest(result);
-        }
-
-        [HttpGet("getfirstimagebyproduct")]
-        public IActionResult GetFirstImageByProduct(int productId)
-        {
-            var result = _productImageService.GetFirstImageByProduct(productId);
 
             if (result.Success)
             {
