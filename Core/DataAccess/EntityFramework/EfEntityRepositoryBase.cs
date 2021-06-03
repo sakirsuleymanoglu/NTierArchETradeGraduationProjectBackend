@@ -43,6 +43,14 @@ namespace Core.DataAccess.EntityFramework
             }
         }
 
+        public TEntity First(Expression<Func<TEntity, bool>> filter)
+        {
+            using(TContext context = new TContext())
+            {
+                return context.Set<TEntity>().First(filter);
+            }
+        }
+
         public List<TEntity> GetAll(Expression<Func<TEntity, bool>> filter = null)
         {
             using (TContext context = new TContext())

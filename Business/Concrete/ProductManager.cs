@@ -17,13 +17,17 @@ namespace Business.Concrete
 
         private readonly IBrandService _brandService;
 
-        public ProductManager(IProductDal productDal, ICategoryService categoryService, IBrandService brandService)
+        private readonly IProductImageService _productImageService;
+
+        public ProductManager(IProductDal productDal, ICategoryService categoryService, IBrandService brandService, IProductImageService productImageService)
         {
             _productDal = productDal;
 
             _categoryService = categoryService;
 
             _brandService = brandService;
+
+            _productImageService = productImageService;
         }
 
         public IResult Add(Product product)
@@ -170,7 +174,7 @@ namespace Business.Concrete
 
         public IDataResult<List<ProductDetailsDto>> GetAllWithDetailsByPrice(decimal begin, decimal end)
         {
-            var result = _productDal.GetAllWithDetails(p => p.Price >= begin && p.Price < end);
+            var result = _productDal.GetAllWithDetails(p => p.Price >= begin && p.Price <= end);
 
             return new SuccessDataResult<List<ProductDetailsDto>>(result);
         }
