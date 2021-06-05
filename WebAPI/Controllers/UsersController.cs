@@ -105,7 +105,7 @@ namespace WebAPI.Controllers
             }
 
             return BadRequest(result);
-        }
+        }   
 
         [HttpGet("getclaims")]
         public IActionResult GetClaims(int userId)

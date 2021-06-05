@@ -33,7 +33,7 @@ namespace Business.Concrete
             _userOperationClaimDal.Add(new UserOperationClaim
             {
                 UserId = userId,
-                OperationClaimId = 3
+                OperationClaimId = 1
             });
 
             return new SuccessResult(Messages.UserOperationClaimInsertionSuccess);

@@ -17,8 +17,8 @@ namespace Business.Constants
         public static string LoginSuccessful;
         public static string PasswordError;
         public static string UserInsertionError;
-        public static string RegistirationSuccessful;
-        public static string UserUpdatedSuccess { get; set; }
+        public static string RegistirationSuccessful = "Kayıt başarılı bir şekilde gerçekleşti.";
+        public static string UserUpdatedSuccess;
         public static string UserAlreadyExists { get; set; }
         public static string UserNotFound { get; set; }
         public static string UserClaimsNotFound { get; set; }
