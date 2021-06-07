@@ -33,6 +33,19 @@ namespace WebAPI.Controllers
             return BadRequest(result);
         }
 
+        [HttpPost("add")]
+        public IActionResult Add(Product product)
+        {
+            var result = _productService.Add(product);
+
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+
+            return BadRequest(result);
+        }
+
         [HttpGet("getallwithdetails")]
         public IActionResult GetAllWithDetails()
         {
@@ -141,19 +154,6 @@ namespace WebAPI.Controllers
         public IActionResult GetAllByBrand(int brandId)
         {
             var result = _productService.GetAllByBrand(brandId);
-
-            if (result.Success)
-            {
-                return Ok(result);
-            }
-
-            return BadRequest(result);
-        }
-
-        [HttpPost("add")]
-        public IActionResult Add(Product product)
-        {
-            var result = _productService.Add(product);
 
             if (result.Success)
             {

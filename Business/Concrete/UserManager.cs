@@ -123,13 +123,20 @@ namespace Business.Concrete
 
         public IResult Update(UserForRegisterDto userForRegisterDto, int userId)
         {
-            var userAlreadyExistsCheck = BusinessRules.Run(CheckIfUserAlreadyExists(userForRegisterDto.Email));
 
-            if (userAlreadyExistsCheck != null)
+            var emailEqualsResult = CheckIfUserEmailEqualsUserRegisterDtoEmail(userForRegisterDto.Email, userId);
+
+            
+            if (!emailEqualsResult.Success)
             {
-                return new ErrorDataResult<User>(userAlreadyExistsCheck.Message);
-            }
+                var userAlreadyExistsCheck = BusinessRules.Run(CheckIfUserAlreadyExists(userForRegisterDto.Email));
 
+                if (userAlreadyExistsCheck != null)
+                {
+                    return new ErrorDataResult<User>(userAlreadyExistsCheck.Message);
+                }
+            }
+           
             byte[] passwordHash, passwordSalt;
 
             var result = BusinessRules.Run(CheckIfExistsUser(userId));
@@ -165,6 +172,18 @@ namespace Business.Concrete
             }
 
             return new SuccessResult();
+        }
+
+        public IResult CheckIfUserEmailEqualsUserRegisterDtoEmail(string userRegisterDtoEmail, int userId)
+        {
+            var user = _userDal.Get(u => u.Id == userId);
+
+            if(user.Email == userRegisterDtoEmail)
+            {
+                return new SuccessResult();
+            }
+
+            return new ErrorResult();
         }
 
 

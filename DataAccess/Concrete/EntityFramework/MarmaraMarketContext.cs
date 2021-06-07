@@ -11,6 +11,7 @@ namespace DataAccess.Concrete.EntityFramework
             optionsBuilder.UseSqlServer(@"Server=(localdb)\MSSQLLocalDB; Initial Catalog=MarmaraMarket; Integrated Security=True;");
         }
 
+        public DbSet<Basket> Baskets { get; set; }
         public DbSet<ProductImage> ProductImages { get; set; }
         public DbSet<Address> Addresses { get; set; }
         public DbSet<City> Cities { get; set; }
