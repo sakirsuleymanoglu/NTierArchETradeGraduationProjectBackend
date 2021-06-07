@@ -8,7 +8,7 @@ namespace DataAccess.Concrete.EntityFramework
     {
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer(@"Server=(localdb)\MSSQLLocalDB; Initial Catalog=MarmaraMarket; Integrated Security=True;");
+            optionsBuilder.UseSqlServer(@"Server=DESKTOP-FL0EAGU\SQLEXPRESS; Initial Catalog=MarmaraMarket; Integrated Security=True;");
         }
 
         public DbSet<Basket> Baskets { get; set; }

@@ -12,7 +12,7 @@ namespace Business.Abstract
         IResult Add(Basket basket);
         IResult Delete(Basket basket);
         IDataResult<List<BasketDetailsDto>> GetAllWithDetailsByUser(int userId);
-        IDataResult<decimal> GetTotalPrice();
+        IDataResult<decimal> GetTotalPrice(int userId);
         IResult DeleteBasket(int basketId);
     }
 }

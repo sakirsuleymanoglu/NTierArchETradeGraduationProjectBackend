@@ -60,9 +60,9 @@ namespace WebAPI.Controllers
         }
 
         [HttpGet("gettotalprice")]
-        public IActionResult GetTotalPrice()
+        public IActionResult GetTotalPrice(int userId)
         {
-            var result = _basketService.GetTotalPrice();
+            var result = _basketService.GetTotalPrice(userId);
 
             if (result.Success)
             {

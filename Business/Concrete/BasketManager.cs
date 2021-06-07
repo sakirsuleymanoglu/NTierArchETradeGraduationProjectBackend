@@ -77,9 +77,9 @@ namespace Business.Concrete
             return new SuccessDataResult<List<BasketDetailsDto>>(result);
         }
 
-        public IDataResult<decimal> GetTotalPrice()
+        public IDataResult<decimal> GetTotalPrice(int userId)
         {
-            var result = _basketDal.GetAllWithDetails();
+            var result = _basketDal.GetAllWithDetails(b=>b.UserId == userId);
 
             decimal totalPrice = 0;
 
